@@ -1,0 +1,29 @@
+<!-- github_stats.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Stats</title>
+</head>
+<body>
+    <h1>GitHub Stats</h1>
+
+    <!-- Form for entering the username -->
+    <form method="get" action="{% url 'github_stats' %}">
+        {% csrf_token %}
+        <label for="username">Enter GitHub Username:</label>
+        <input type="text" id="username" name="username" required>
+        <button type="submit">Get Stats</button>
+    </form>
+
+    <!-- Display GitHub stats here -->
+    {% if username %}
+        <p>GitHub Stats for {{ username }}</p>
+        <p>Repositories: {{ repos_count }}</p>
+        <p>Followers: {{ followers_count }}</p>
+        <p>Following: {{ following_count }}</p>
+    {% endif %}
+</body>
+</html>
+
